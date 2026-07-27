@@ -130,6 +130,8 @@ body {
   width: clamp(13rem, 21vw, 19rem);
   height: auto;
   margin-bottom: clamp(1.8rem, 4vh, 3.25rem);
+  filter: invert(1) grayscale(1) brightness(3);
+  mix-blend-mode: screen;
 }
 
 .welcome,
