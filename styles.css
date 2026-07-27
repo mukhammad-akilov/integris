@@ -1,0 +1,409 @@
+:root {
+  --primary: #11383f;
+  --primary-deep: #092a30;
+  --secondary: #b1d6ce;
+  --tertiary: #88dd82;
+  --white: #ffffff;
+  --page-gutter: clamp(1.25rem, 5vw, 5rem);
+  --content-width: 82rem;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-width: 20rem;
+  background: var(--primary);
+}
+
+body {
+  min-width: 20rem;
+  min-height: 100vh;
+  margin: 0;
+  background: var(--primary);
+  color: var(--white);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.page {
+  isolation: isolate;
+  position: relative;
+  min-height: 100vh;
+  min-height: 100svh;
+  overflow: hidden;
+}
+
+.backdrop {
+  position: absolute;
+  z-index: -3;
+  inset: 0;
+  overflow: hidden;
+  background: linear-gradient(
+    125deg,
+    var(--primary-deep) 0%,
+    var(--primary) 24%,
+    var(--secondary) 43%,
+    var(--tertiary) 66%,
+    #357e62 79%,
+    var(--primary) 100%
+  );
+  background-size: 260% 260%;
+  animation: color-flow 8s ease-in-out infinite alternate;
+}
+
+.backdrop::before,
+.backdrop::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+
+.backdrop::before {
+  inset: -18%;
+  background:
+    conic-gradient(
+      from 218deg at 18% 25%,
+      rgba(17, 56, 63, 0.82) 0 36deg,
+      rgba(177, 214, 206, 0.44) 36deg 86deg,
+      transparent 86deg 360deg
+    ),
+    conic-gradient(
+      from 18deg at 86% 16%,
+      rgba(136, 221, 130, 0.66) 0 44deg,
+      rgba(17, 56, 63, 0.6) 44deg 96deg,
+      transparent 96deg 360deg
+    ),
+    conic-gradient(
+      from 122deg at 54% 88%,
+      rgba(255, 255, 255, 0.16) 0 48deg,
+      rgba(53, 126, 98, 0.66) 48deg 106deg,
+      transparent 106deg 360deg
+    );
+  animation: facet-drift 14s ease-in-out infinite alternate;
+}
+
+.backdrop::after {
+  inset: 6% -12% -24% 48%;
+  background: conic-gradient(
+    from 32deg at 50% 50%,
+    rgba(9, 42, 48, 0.58) 0 72deg,
+    rgba(177, 214, 206, 0.32) 72deg 146deg,
+    rgba(136, 221, 130, 0.48) 146deg 218deg,
+    rgba(17, 56, 63, 0.52) 218deg 292deg,
+    rgba(255, 255, 255, 0.12) 292deg 360deg
+  );
+  clip-path: polygon(42% 0, 100% 22%, 82% 100%, 10% 86%, 0 30%);
+  animation: poly-float 12s ease-in-out infinite alternate;
+}
+
+.page::after {
+  content: "";
+  position: absolute;
+  z-index: -2;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.36);
+  pointer-events: none;
+}
+
+.layout {
+  position: relative;
+  width: min(100%, var(--content-width));
+  min-height: 100vh;
+  min-height: 100svh;
+  display: grid;
+  align-content: center;
+  gap: clamp(2.5rem, 6vh, 4.5rem);
+  margin: 0 auto;
+  padding: clamp(2rem, 5vh, 4rem) var(--page-gutter);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.brand {
+  display: block;
+  width: clamp(13rem, 21vw, 19rem);
+  height: auto;
+  margin-bottom: clamp(1.8rem, 4vh, 3.25rem);
+}
+
+.welcome,
+.section-label {
+  margin: 0;
+  color: var(--tertiary);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+h1 {
+  margin: 0.55rem 0 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(3.25rem, 7vw, 7rem);
+  font-weight: 700;
+  line-height: 0.92;
+  letter-spacing: 0;
+  text-wrap: balance;
+}
+
+.chapter {
+  margin: clamp(1.15rem, 2.5vh, 2rem) 0 0;
+  color: var(--secondary);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.35rem, 2.5vw, 2.35rem);
+  line-height: 1.15;
+}
+
+.notice {
+  margin-top: clamp(1.7rem, 3vh, 2.5rem);
+}
+
+.notice strong {
+  display: block;
+  margin-bottom: 0.45rem;
+  color: var(--tertiary);
+  font-size: 0.76rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.notice p,
+.signoff {
+  margin: 0;
+  font-size: clamp(0.95rem, 1.15vw, 1.1rem);
+  line-height: 1.6;
+}
+
+.signoff {
+  margin-top: 1.3rem;
+}
+
+.signoff span {
+  display: block;
+  font-weight: 700;
+}
+
+.contact-section {
+  width: 100%;
+  padding-top: clamp(1.5rem, 3vh, 2.25rem);
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.section-label {
+  margin-bottom: clamp(1.3rem, 2.5vh, 2rem);
+  text-align: center;
+}
+
+.contacts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.contact {
+  min-width: 0;
+  padding: 0 clamp(1rem, 4vw, 4rem);
+}
+
+.contact + .contact {
+  border-left: 1px solid rgba(255, 255, 255, 0.26);
+}
+
+.contact h2 {
+  margin: 0 0 1rem;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.35rem, 2vw, 2rem);
+  line-height: 1.1;
+}
+
+.contact a {
+  display: grid;
+  grid-template-columns: 3.6rem minmax(0, 1fr);
+  gap: 0.75rem;
+  width: fit-content;
+  max-width: 100%;
+  margin: 0.55rem 0 0;
+  color: var(--white);
+  font-size: clamp(0.88rem, 1.2vw, 1.05rem);
+  line-height: 1.5;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+.contact a span {
+  color: var(--secondary);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  line-height: 2.2;
+  text-transform: uppercase;
+}
+
+.contact a:hover,
+.contact a:focus-visible {
+  color: var(--tertiary);
+}
+
+.contact a:focus-visible {
+  outline: 2px solid var(--tertiary);
+  outline-offset: 4px;
+}
+
+address {
+  max-width: 55rem;
+  margin: clamp(1.5rem, 3vh, 2.25rem) auto 0;
+  color: var(--secondary);
+  font-size: clamp(0.82rem, 1vw, 0.95rem);
+  font-style: normal;
+  line-height: 1.55;
+  text-align: center;
+}
+
+@media (min-width: 701px) {
+  address {
+    position: absolute;
+    right: var(--page-gutter);
+    bottom: clamp(1.25rem, 3vh, 2.5rem);
+    left: var(--page-gutter);
+    margin: 0 auto;
+  }
+}
+
+@keyframes color-flow {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 42%;
+  }
+
+  100% {
+    background-position: 48% 100%;
+  }
+}
+
+@keyframes facet-drift {
+  from {
+    transform: translate3d(-3%, -2%, 0) scale(1);
+  }
+
+  to {
+    transform: translate3d(4%, 3%, 0) scale(1.06);
+  }
+}
+
+@keyframes poly-float {
+  from {
+    transform: translate3d(0, 2%, 0) rotate(-2deg) scale(0.95);
+  }
+
+  to {
+    transform: translate3d(-7%, -5%, 0) rotate(3deg) scale(1.06);
+  }
+}
+
+@media (max-width: 700px) {
+  .page {
+    overflow-y: auto;
+  }
+
+  .layout {
+    gap: 2.5rem;
+    padding-block: 2rem 2.5rem;
+  }
+
+  .brand {
+    width: min(14rem, 70vw);
+    margin-bottom: 2rem;
+  }
+
+  h1 {
+    font-size: clamp(3rem, 15vw, 4.8rem);
+  }
+
+  .chapter {
+    font-size: clamp(1.3rem, 6.5vw, 1.9rem);
+  }
+
+  .contacts {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.75rem;
+  }
+
+  .contact {
+    padding: 0;
+  }
+
+  .contact + .contact {
+    padding-top: 1.75rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.22);
+    border-left: 0;
+  }
+
+  .contact a {
+    width: 100%;
+    margin-inline: 0;
+  }
+
+  .backdrop::after {
+    inset: 18% -38% -15% 20%;
+  }
+}
+
+@media (max-height: 900px) and (min-width: 701px) {
+  .layout {
+    gap: 2rem;
+    padding-block: 1.5rem;
+  }
+
+  .brand {
+    width: clamp(11rem, 17vw, 15rem);
+    margin-bottom: 1.4rem;
+  }
+
+  h1 {
+    font-size: clamp(3.5rem, 6vw, 5.5rem);
+  }
+
+  .chapter {
+    margin-top: 0.8rem;
+  }
+
+  .notice {
+    margin-top: 1.25rem;
+  }
+
+  .signoff {
+    margin-top: 0.8rem;
+  }
+
+  .contact-section {
+    padding-top: 1.25rem;
+  }
+
+  .section-label {
+    margin-bottom: 1rem;
+  }
+
+  .contact h2 {
+    margin-bottom: 0.65rem;
+  }
+
+  address {
+    margin-top: 1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .backdrop,
+  .backdrop::before,
+  .backdrop::after {
+    animation: none;
+  }
+}
