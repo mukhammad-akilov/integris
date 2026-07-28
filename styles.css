@@ -112,8 +112,9 @@ body {
   min-height: 100vh;
   min-height: 100svh;
   display: grid;
-  align-content: center;
-  gap: clamp(2.5rem, 6vh, 4.5rem);
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  align-content: stretch;
+  gap: clamp(1.5rem, 3vh, 2.5rem);
   margin: 0 auto;
   padding: clamp(2rem, 5vh, 4rem) var(--page-gutter);
 }
@@ -122,14 +123,15 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  align-self: center;
   text-align: center;
 }
 
 .brand {
   display: block;
-  width: clamp(13rem, 21vw, 19rem);
+  width: clamp(4.75rem, 7vw, 6.5rem);
   height: auto;
-  margin-bottom: clamp(1.8rem, 4vh, 3.25rem);
+  justify-self: center;
   filter: invert(1) grayscale(1) brightness(3);
   mix-blend-mode: screen;
 }
@@ -144,8 +146,6 @@ body {
 }
 
 h1 {
-  display: grid;
-  gap: clamp(1rem, 2vh, 1.5rem);
   max-width: 15ch;
   margin: 0;
   font-family: Georgia, "Times New Roman", serif;
@@ -154,12 +154,6 @@ h1 {
   line-height: 0.92;
   letter-spacing: 0;
   text-wrap: balance;
-}
-
-h1 span:last-child {
-  color: var(--secondary);
-  font-size: clamp(1.35rem, 2.7vw, 2.75rem);
-  line-height: 1.08;
 }
 
 .intro,
@@ -175,6 +169,14 @@ h1 span:last-child {
   margin-top: clamp(2rem, 4vh, 3.25rem);
   color: var(--secondary);
   font-size: 1.2rem;
+}
+
+.intro p {
+  margin: 0;
+}
+
+.intro p + p {
+  margin-top: 0.85rem;
 }
 
 .relaunch {
@@ -265,15 +267,6 @@ address {
   text-align: center;
 }
 
-@media (min-width: 701px) {
-  address {
-    position: absolute;
-    right: var(--page-gutter);
-    bottom: clamp(1.25rem, 3vh, 2.5rem);
-    left: var(--page-gutter);
-  }
-}
-
 @keyframes color-flow {
   0% {
     background-position: 0% 50%;
@@ -319,16 +312,11 @@ address {
   }
 
   .brand {
-    width: min(14rem, 70vw);
-    margin-bottom: 2rem;
+    width: min(5.5rem, 24vw);
   }
 
   h1 {
     font-size: clamp(3rem, 15vw, 4.8rem);
-  }
-
-  h1 span:last-child {
-    font-size: clamp(1.25rem, 6vw, 1.75rem);
   }
 
   .contact a {
@@ -348,16 +336,11 @@ address {
   }
 
   .brand {
-    width: clamp(11rem, 17vw, 15rem);
-    margin-bottom: 1.4rem;
+    width: clamp(4rem, 6vw, 5.25rem);
   }
 
   h1 {
     font-size: clamp(3.5rem, 6vw, 5.5rem);
-  }
-
-  h1 span:last-child {
-    font-size: clamp(1.25rem, 2.4vw, 2.2rem);
   }
 
   .signoff {
